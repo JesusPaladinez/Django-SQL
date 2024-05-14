@@ -1,0 +1,50 @@
+{% extends "index.html"%}
+{%block contenido%}
+<div class="p-4 d-flex justify-content-cente">
+    <div class="card container p-3" style="width: 25rem; height: 37rem;">
+        <h4 style="display:flex; justify-content:center;">Agregar Pelicula</h4>
+        <form action="/agregarPeliculas/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="txtCodigo">Codigo:</label>
+                <input type="text" name="txtCodigo" id="codigo" class="form-control" >
+            </div>
+            <div>
+                <label for="txtTitulo">Titulo:</label>
+                <input type="text" name="txtTitulo" id="titulo" class="form-control" >
+            </div>
+            <div>
+                <label for="txtProtagonista">Protagonista:</label>
+                <input type="text" name="txtProtagonista" id="protagonista" class="form-control" >
+            </div>
+            <div>
+                <label for="txtDuracion">Duracion:</label>
+                <input type="number" name="txtDuracion" id="duracion" class="form-control" >
+            </div>
+            <div>
+                <label for="txtResumen">Resumen:</label>
+                <textarea type="text" name="txtResumen" id="resumen" class="form-control"></textarea>
+            </div>
+            <div>
+                <label for="cbGenero">Genero:</label>
+                <select name="cbGenero" id="" class="form-select">
+                    <option value="">Seleccione</option>
+                    {%for g in generos%}
+                    <option value="{{g.id}}">{{g.genNombre}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div>
+                <label for="fileFoto">Foto:</label>
+                <input type="file" id="fileFoto" name="fileFoto" class="form-control">
+            </div>
+            <div class="pt-3">
+                <a href="/listarPeliculas">
+                    <button class="btn btn-outline-primary">Agregar</button>
+                </a>
+            </div>
+            <div>{{ mensaje }}</div>
+        </form>
+    </div>
+</div>
+{% endblock%}
